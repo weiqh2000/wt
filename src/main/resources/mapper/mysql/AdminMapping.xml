@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bs.wt.backstage.dao.mysql.AdminDao">
+    <select id="getAdmin" resultType="com.bs.wt.backstage.bean.Admin">
+        SELECT * FROM webuser WHERE username=#{username}
+    </select>
+    <select id="login" resultType="Integer">
+        SELECT count(1) FROM webuser where username=#{username} and password=#{password}
+    </select>
+    <select id="getAdminList" resultType="com.bs.wt.backstage.bean.Admin">
+        SELECT * FROM webuser
+        <if test="username != null">
+            WHERE username like #{username}
+        </if>
+        LIMIT #{pageStart}, #{pageSize}
+    </select>
+    <select id="getAdminCounts" resultType="Integer">
+        SELECT count(*) FROM webuser
+        <if test="username != null">
+            WHERE username like #{username}
+        </if>
+    </select>
+    <update id="updateRole">
+        UPDATE webuser SET role = #{role} WHERE username = #{username}
+    </update>
+    <select id="getAddAdmin" resultType="Integer">
+        SELECT count(*) FROM webuser WHERE username = #{username}
+    </select>
+    <insert id="save">
+          insert into webuser(username,password,name,role,createTime)
+          values(#{username},#{password},#{name},#{role},#{createTime})
+    </insert>
+    <delete id="deleteAdmin">
+        DELETE FROM webuser WHERE username = #{username}
+    </delete>
+    <update id="updateAdmin">
+        UPDATE webuser SET `name` = #{name}, `role` = #{role}
+        WHERE `username` = #{username}
+    </update>
+    <update id="editAdminPassword">
+        UPDATE webuser SET `password` = #{name}
+        WHERE `username` = #{username}
+    </update>
+    <update id="editAdminUsername">
+        UPDATE webuser SET `name` = #{name}
+        WHERE `username` = #{username}
+    </update>
+</mapper>

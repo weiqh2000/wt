@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration>
+    <property>
+        <name>hbase.rootdir</name>
+        <value>hdfs://hadoop1:9000/hbase</value>
+    <description> hbase存储在HADOOP HDFS上文件根目录路径，注意端口号应与hadoop的hdfs端口号y一致；如果是普通hadoop集群，则使用例如hdfs://master:8020/hbase；如果是高可用配置，则使用诸如hdfs://mycluster </description>
+    </property>
+    <property>
+        <name>hbase.hadoop1.info.port</name>
+        <value>16010</value>
+    <description>HBase Master web 界面端口。0.98 版本以后默认:16010 以前是 60000</description>
+    </property>
+    <property>
+        <name>hbase.zookeeper.property.clientPort</name>
+        <value>2181</value>
+    <description>zookeeper的端口号，对应zookeeper的zoo.cfg配置的对口号，也是该文件默认的端口号</description>
+    </property>
+    <property>
+        <name>hbase.tmp.dir</name>
+        <value>/usr/local/src/hbase/tmp</value>
+    <description>HBase 临时文件路径</description>
+    </property>
+    <property>
+        <name>zookeeper.session.timeout</name>
+        <value>120000</value>
+    <description>ZooKeeper 超时时间。RegionServer 与 Zookeeper 间的连接超时时间。当超时时间到后，ReigonServer 会被 Zookeeper 从 RS 集群清单中移除，HMaster 收到移除通知后，会对这台 server 负责的 regions 重新 balance，让其他存活的 RegionServer 接管</description>
+    </property>
+    <property>
+        <name>hbase.cluster.distributed</name>
+        <value>true</value>
+    <description>true表示hbase使用分布式模式；false表示单机</description>
+    </property>
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>hadoop1,hadoop2,hadoop3</value>
+    <description>ZooKeeper 管理节点</description>
+    </property>
+    <property>
+        <name>hbase.zookeeper.property.dataDir</name>
+        <value>/usr/local/src/hbase/tmp/zookeeper-hbase</value>
+    <description>HBase在ZooKeeper上存储数据的位置</description>
+    </property>
+    <property>
+        <name>phoenix.schema.isNamespaceMappingEnabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>phoenix.schema.mapSystemTablesToNamespace</name>
+        <value>true</value>
+    </property>
+</configuration>

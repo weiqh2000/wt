@@ -1,0 +1,33 @@
+# mysql
+spring:
+  datasource:
+    # Mysql配置
+    Mysql:
+      driver-class-name: com.mysql.jdbc.Driver
+  #    url: jdcb:mysql://localhost:3306/admin?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+      jdbc-url: jdbc:mysql://localhost:3306/webproject?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+    phoenix:
+      jdbc-url: jdbc:phoenix:10.147.17.121:2181
+      driver-class-name: org.apache.phoenix.jdbc.PhoenixDriver
+      connectionProperties=phoenix:
+        schema:
+          isNamespaceMappingEnabled: true
+  banner:
+    charset: UTF-8
+    location:
+      classpath: banner.txt
+#  jackson:    #设置全局json格式
+#    date-format: yyyy-MM-dd HH:mm:ss   #将日期类型设置为字符串表示
+#    time-zone: GMT+8
+#  mvc: #针对form表单格式
+#    dateFormat: yyyy-MM-dd HH:mm:ss #将日期类型设置为字符串表示
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml,classpath*:mapper/**/*.xml
+  type-aliases-package: com.bs.wt.backstage.bean
+
+server:
+  port: 9998
+

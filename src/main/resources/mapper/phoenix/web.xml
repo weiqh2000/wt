@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bs.wt.backstage.dao.phoenix.PhoenixWebDao">
+<!--    <select id="gettest6" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">-->
+<!--        SELECT * FROM "business"-->
+<!--    </select>-->
+<!--    <select id="getTitleBusiness" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">-->
+<!--        SELECT * FROM-->
+<!--    </select>-->
+    <select id="getBusinessCounts" resultType="Integer">
+        SELECT COUNT(*) FROM "business"
+        <if test="title != null">
+            WHERE "info"."title" LIKE #{title}
+        </if>
+    </select>
+    <select id="getRecreationCounts" resultType="Integer">
+        SELECT COUNT(*) FROM "recreation"
+        <if test="title != null">
+            WHERE "info"."title" LIKE #{title}
+        </if>
+    </select>
+    <select id="getScienceCounts" resultType="Integer">
+        SELECT COUNT(*) FROM "science"
+        <if test="title != null">
+            WHERE "info"."title" LIKE #{title}
+        </if>
+    </select>
+    <select id="getSportsCounts" resultType="Integer">
+        SELECT COUNT(*) FROM "sports"
+        <if test="title != null">
+            WHERE "info"."title" LIKE #{title}
+        </if>
+    </select>
+
+
+    <select id="getTitleBusiness" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">
+        SELECT * FROM "business"
+        <if test="title != null">
+            WHERE "info"."title" LIKE #{title}
+        </if>
+        ORDER BY "detail"."publish_time" DESC LIMIT #{pageStart} OFFSET #{pageSize}
+    </select>
+    <select id="getTitleRecreation" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">
+        SELECT * FROM "recreation"
+        <if test="title != null">
+            WHERE "info"."title" LIKE #{title}
+        </if>
+        ORDER BY "detail"."publish_time" DESC LIMIT #{pageStart} OFFSET #{pageSize}
+    </select>
+    <select id="getTitleScience" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">
+        SELECT * FROM "science"
+        <if test="title != null">
+            WHERE "info"."title" LIKE #{title}
+        </if>
+        ORDER BY "detail"."publish_time" DESC LIMIT #{pageStart} OFFSET #{pageSize}
+    </select>
+    <select id="getTitleSports" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">
+        SELECT * FROM "sports"
+        <if test="title != null">
+            WHERE "info"."title" LIKE #{title}
+        </if>
+        ORDER BY "detail"."publish_time" DESC LIMIT #{pageStart} OFFSET #{pageSize}
+    </select>
+
+    <select id="getBusinessArticle" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">
+        SELECT * FROM "business" where "gid"= #{gid}
+    </select>
+    <select id="getRecreationArticle" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">
+        SELECT * FROM "recreation" where "gid"= #{gid}
+    </select>
+    <select id="getScienceArticle" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">
+        SELECT * FROM "science" where "gid"= #{gid}
+    </select>
+    <select id="getSportsArticle" resultType="com.bs.wt.backstage.bean.phoenix.AllPhoenixBean">
+        SELECT * FROM "sports" WHERE "gid"= #{gid}
+    </select>
+
+</mapper>
